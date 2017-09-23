@@ -8,7 +8,7 @@ TODO section on BioSys.
 
 If the data consumer however wishes to analyse data in a statistical package like R, the data need to be transformed from a nested list of lists (JSON) into a two-dimensional tablular structure.
 
-The main purpose of `biosystR` is to facilitate reading, parsing and using BioSys data by providing helpers to access the API and flatten the API outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
+The main purpose of `biosysR` is to facilitate reading, parsing and using BioSys data by providing helpers to access the API and flatten the API outputs into a [tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
 
 Installation
 ------------
@@ -19,8 +19,6 @@ Install `biosystR` from GitHub:
 # install.packages("devtools")
 devtools::install_github("parksandwildlife/biosysR")
 ```
-
-While the WAStD API is only accessible to a selected audience, and `wastdr` is under active development, it is not feasible to release `wastdr` on CRAN yet. Therefore, `wastdr` will be distributed via GitHub for the time being.
 
 Setup
 =====
@@ -50,7 +48,7 @@ Contribute
 
 Every contribution, constructive feedback, or suggestion is welcome!
 
-Send us your ideas and requests as [issues](https://github.com/parksandwildlife/biosystr/issues) or submit a pull request.
+Send us your ideas and requests as [issues](https://github.com/parksandwildlife/biosysr/issues) or submit a pull request.
 
 Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 
