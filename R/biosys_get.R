@@ -80,9 +80,9 @@ biosys_get <- function(serializer,
 
 #' @title S3 print method for 'biosys_api_response'.
 #' @description Prints a short representation of data returned by \
-#'   code{\link{get_biosys}}.
+#'   code{\link{biosys_get}}.
 #' @param x An object of class `biosys_api_response` as returned by
-#'   \code{\link{get_biosys}}.
+#'   \code{\link{biosys_get}}.
 #' @param ... Extra parameters for `print`
 #' @importFrom utils str
 #' @export

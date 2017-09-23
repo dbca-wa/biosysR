@@ -8,12 +8,12 @@
 }
 \arguments{
 \item{x}{An object of class `biosys_api_response` as returned by
-\code{\link{get_biosys}}.}
+\code{\link{biosys_get}}.}
 
 \item{...}{Extra parameters for `print`}
 }
 \description{
 Prints a short representation of data returned by \
-  code{\link{get_biosys}}.
+  code{\link{biosys_get}}.
 }
 
