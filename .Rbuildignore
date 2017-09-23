@@ -1,6 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
+^\.coveralls\.yml$
 ^README\.Rmd$
 ^README-*\.png$
 ^docs$

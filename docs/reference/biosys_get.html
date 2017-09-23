@@ -87,12 +87,8 @@
     </div>
 
     
-    <p>Call the WAStD API serializer's list view with given GET parameters,
-  parse the response as text into a GeoJSON FeatureCollection.
-  Parse the FeatureCollection using jsonlite::fromJSON and return its features
-  as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
-  TODO: use pagination, see
-  <a href='https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html'>https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html</a></p>
+    <p>Call the BioSys API serializer's list view with given GET
+  parameters and return the response JSON as list of lists.</p>
     
 
     <pre class="usage"><span class='fu'>biosys_get</span>(<span class='no'>serializer</span>, <span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"https://biosys.dbca.wa.gov.au/api/"</span>,

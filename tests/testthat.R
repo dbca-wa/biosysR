@@ -1,4 +1,4 @@
 library(testthat)
-library(biosystR)
+library(biosysR)
 
 test_check("biosysR")

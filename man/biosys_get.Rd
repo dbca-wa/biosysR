@@ -39,11 +39,7 @@ An S3 object of class 'wastd_api_response' containing:
   response: The API HTTP response with all metadata
 }
 \description{
-Call the WAStD API serializer's list view with given GET parameters,
-  parse the response as text into a GeoJSON FeatureCollection.
-  Parse the FeatureCollection using jsonlite::fromJSON and return its features
-  as nested data.frame (simplify=TRUE) or as list of lists (simplify=FALSE).
-  TODO: use pagination, see
-  \url{https://cran.r-project.org/web/packages/jsonlite/vignettes/json-paging.html}
+Call the BioSys API serializer's list view with given GET
+  parameters and return the response JSON as list of lists.
 }
 

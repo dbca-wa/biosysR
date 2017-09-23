@@ -56,6 +56,7 @@ Pull requests should eventually pass tests and checks (not introducing new ERROR
 ``` r
 devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
 devtools::test()
+pkgdown::build_site()
 devtools::check(check_version = T, force_suggests = T, cran = T)
 covr::codecov()
 ```

@@ -103,6 +103,7 @@ devtools::<span class="kw">install_github</span>(<span class="st">"parksandwildl
 <p>Pull requests should eventually pass tests and checks (not introducing new ERRORs, WARNINGs or NOTEs apart from the “New CRAN package” NOTE):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools::<span class="kw">document</span>(<span class="dt">roclets=</span><span class="kw">c</span>(<span class="st">'rd'</span>, <span class="st">'collate'</span>, <span class="st">'namespace'</span>, <span class="st">'vignette'</span>))
 devtools::<span class="kw">test</span>()
+pkgdown::<span class="kw">build_site</span>()
 devtools::<span class="kw">check</span>(<span class="dt">check_version =</span> T, <span class="dt">force_suggests =</span> T, <span class="dt">cran =</span> T)
 covr::<span class="kw">codecov</span>()</code></pre></div>
 <p>To enable local testing of the API as well as checking and upload of test coverage, add these two lines with the respective tokens to your .Rprofile:</p>
