@@ -1,8 +1,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![Travis-CI Build Status](https://travis-ci.org/parksandwildlife/biosystR.png?branch=master)](https://travis-ci.org/parksandwildlife/biosystR) [![Coverage Status](https://coveralls.io/repos/github/parksandwildlife/biosystR/badge.svg?branch=master)](https://coveralls.io/github/parksandwildlife/biosystR?branch=master)
+[![Travis-CI Build Status](https://travis-ci.org/parksandwildlife/biosysR.png?branch=master)](https://travis-ci.org/parksandwildlife/biosysR) [![Coverage Status](https://coveralls.io/repos/github/parksandwildlife/biosysR/badge.svg?branch=master)](https://coveralls.io/github/parksandwildlife/biosysR?branch=master)
 
-biosystR makes BioSys data accessible in R
-==========================================
+biosysR makes BioSys data accessible in R
+=========================================
 
 TODO section on BioSys.
 
@@ -17,7 +17,7 @@ Install `biosystR` from GitHub:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("parksandwildlife/biosystR")
+devtools::install_github("parksandwildlife/biosysR")
 ```
 
 While the WAStD API is only accessible to a selected audience, and `wastdr` is under active development, it is not feasible to release `wastdr` on CRAN yet. Therefore, `wastdr` will be distributed via GitHub for the time being.
@@ -42,7 +42,7 @@ Learn more
 See the vignette for in-depth examples of transforming, analysing and visualising data.
 
 ``` r
-vignette("biosystR")
+vignette("biosysR")
 ```
 
 Contribute
