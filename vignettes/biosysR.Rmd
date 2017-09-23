@@ -10,7 +10,7 @@ vignette: >
 ---
 
 ```{r libs, message=FALSE}
-library(biosystR)
+library(biosysR)
 library(magrittr)
 ```
 

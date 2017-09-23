@@ -1,4 +1,4 @@
-Package: biosystR
+Package: biosysR
 Type: Package
 Title: BioSys API Wrapper
 Version: 0.1.0

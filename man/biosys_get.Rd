@@ -11,7 +11,7 @@ biosys_get(serializer, api = "https://biosys.dbca.wa.gov.au/api/",
 \arguments{
 \item{serializer}{(character) WAStD API serializer name (required).
 Possible values as per
-\code{https://strandings.dpaw.wa.gov.au/api/1/?format=corejson} are:
+\code{https://biosys.dbca.wa.gov.au/api/} are:
 \itemize{
 \item projects
 \item datasets
@@ -19,23 +19,20 @@ Possible values as per
 \item sites
 }}
 
+\item{api}{(character) The BioSys API URL,
+default https://biosys.dbca.wa.gov.au/api/}
+
+\item{un}{(character) The BioSys username, default \code{Sys.getenv("BIOSYS_UN")}}
+
+\item{pw}{(character) The BioSys password, default \code{Sys.getenv("BIOSYS_PW")}}
+
 \item{query}{(list) API query parameters for format, limit, filtering
 (default: list(taxon='Cheloniidae', limit=10000, format='json'))}
-
-\item{api_url}{(character) The WAStD API URL,
-default \code{\link{get_wastdr_api_url}}, see \code{\link{wastdr_setup}}}
-
-\item{api_token}{(character) The WAStD API token,
-default \code{\link{get_wastdr_api_token}}, see \code{\link{wastdr_setup}}}
-
-\item{simplify}{(Boolean) Whether to flatten nested data frames into a single
-data frame with repeating unnamed groups as lists (simplify = TRUE), or as
-list of lists (default: FALSE)}
 }
 \value{
 An S3 object of class 'wastd_api_response' containing:
 
-  content: The retrieved GeoJSON features as data.table or list
+  content: The retrieved JSON as list of lists
 
   serializer: The called serializer, e.g. 'projects'
 
