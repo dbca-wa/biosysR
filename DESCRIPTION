@@ -8,11 +8,11 @@ Author: Florian W. Mayer [aut, cre]
 Description:
     The biological survey data warehouse 'BioSys' is a 'Django' web app with a 
     'RESTful' 'API' returning 'JSON'.
-    'biosystR' provides helpers to retrieve data from the 'API', and to turn the 
-    received 'JSON' into R 'tibbles'. 'biosystR' will grow alongside 
+    'biosysR' provides helpers to retrieve data from the 'API', and to turn the 
+    received 'JSON' into R 'tibbles'. 'biosysR' will grow alongside 
     implemented use cases of retrieving and analysing 'BioSys' data.
-URL: https://github.com/parksandwildlife/biosystr
-BugReports: https://github.com/parksandwildlife/biosystr/issues
+URL: https://github.com/parksandwildlife/biosysr
+BugReports: https://github.com/parksandwildlife/biosysr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
