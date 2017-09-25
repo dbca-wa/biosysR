@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Parse BioSys records to tibble — biosys_records • biosysR</title>
+<title>Example metadata for one dataset — datasets • biosysR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,46 +83,25 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Parse BioSys records to tibble</h1>
+    <h1>Example metadata for one dataset</h1>
     </div>
 
     
-    <p>Parse BioSys records to tibble</p>
+    <p>Example metadata for one dataset</p>
     
 
-    <pre class="usage"><span class='fu'>biosys_records</span>(<span class='kw'>un</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"BIOSYS_UN"</span>), <span class='kw'>pw</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"BIOSYS_PW"</span>),
-  <span class='kw'>project_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>un</th>
-      <td><p>(character) The BioSys username, default <code>Sys.getenv("BIOSYS_UN")</code></p></td>
-    </tr>
-    <tr>
-      <th>pw</th>
-      <td><p>(character) The BioSys password, default <code>Sys.getenv("BIOSYS_PW")</code></p></td>
-    </tr>
-    <tr>
-      <th>project_id</th>
-      <td><p>(int) An optional project ID to restrict the result to.</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble of BioSys records with some common metadata fields plus the
-  respective data.</p>
+    <p>a <code>tibble</code> with 1 record of 13 variables.</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
           </ul>
 
   </div>

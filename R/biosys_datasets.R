@@ -1,12 +1,18 @@
 #' Parse BioSys datasets to tibble
+#'
+#' @param un (character) The BioSys username, default \code{Sys.getenv("BIOSYS_UN")}
+#' @param pw (character) The BioSys password, default \code{Sys.getenv("BIOSYS_PW")}
+#' @param project_id (int) An optional project ID to restrict the result to.
+#' @return A tibble of dataset metadata. The field \code{data_package} is a list
+#'   column containing the \code{tabular_data_package} definition.
 #' @export
 biosys_datasets <- function(
     un=Sys.getenv("BIOSYS_UN"),
     pw=Sys.getenv("BIOSYS_PW"),
     project_id = NULL){
-
+    . <- ""
     if (!is.null(project_id)) {
-        query = list("project" = project_id)
+        query = list("project__id" = project_id)
     } else {
         query = list()
     }

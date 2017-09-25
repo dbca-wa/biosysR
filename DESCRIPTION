@@ -16,16 +16,20 @@ BugReports: https://github.com/parksandwildlife/biosysr/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends:
+    R (>= 3.1.0)
 Imports:
     dplyr,
     httr,
     kimisc,
     magrittr,
     purrr,
-    tibble
+    tibble,
+    utils
 Suggests: 
     DT,
     knitr,
+    listviewer,
     rmarkdown,
     testthat,
     covr

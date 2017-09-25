@@ -6,6 +6,15 @@
 \usage{
 biosys_projects(un = Sys.getenv("BIOSYS_UN"), pw = Sys.getenv("BIOSYS_PW"))
 }
+\arguments{
+\item{un}{(character) The BioSys username, default \code{Sys.getenv("BIOSYS_UN")}}
+
+\item{pw}{(character) The BioSys password, default \code{Sys.getenv("BIOSYS_PW")}}
+}
+\value{
+A tibble with project metadata. Fields \code{site_data_package}
+  and \code{custodians} are list columns.
+}
 \description{
 Parse BioSys projects to tibble
 }

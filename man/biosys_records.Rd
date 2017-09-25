@@ -7,6 +7,17 @@
 biosys_records(un = Sys.getenv("BIOSYS_UN"), pw = Sys.getenv("BIOSYS_PW"),
   project_id = NULL)
 }
+\arguments{
+\item{un}{(character) The BioSys username, default \code{Sys.getenv("BIOSYS_UN")}}
+
+\item{pw}{(character) The BioSys password, default \code{Sys.getenv("BIOSYS_PW")}}
+
+\item{project_id}{(int) An optional project ID to restrict the result to.}
+}
+\value{
+A tibble of BioSys records with some common metadata fields plus the
+  respective data.
+}
 \description{
 Parse BioSys records to tibble
 }

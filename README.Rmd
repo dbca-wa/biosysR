@@ -70,19 +70,32 @@ variables. See the vignette for more authentication options.
 ### BioSys projects
 ```{r projects}
 projects <- biosysR::biosys_projects()
-knitr::kable(projects)
+dplyr::glimpse(projects)
 ```
 
 ### BioSys datasets
 ```{r datasets}
 datasets <- biosysR::biosys_datasets(project_id = 6)
-knitr::kable(datasets)
+dplyr::glimpse(datasets)
 ```
 
 ### BioSys records
 ```{r records}
 records <- biosysR::biosys_records(project_id = 6)
-knitr::kable(head(records, n = 100))
+dplyr::glimpse(records)
+```
+
+### Example data
+In case the BioSys API is not accessible, a sample of available data is supplied.
+
+```{r example_data}
+data(projects)
+data(datasets)
+data(records)
+
+dplyr::glimpse(projects)
+dplyr::glimpse(datasets)
+dplyr::glimpse(head(records))
 ```
 
 ## Learn more

@@ -81,12 +81,15 @@ using single sign on (needs active browser window)
 ## BioSys projects
 ```{r projects}
 projects <- biosys_projects()
+dplyr::glimpse(projects)
 DT::datatable(projects)
 ```
 
 ## BioSys datasets
 ```{r datasets}
 datasets <- biosys_datasets(project_id = 6)
+dplyr::glimpse(datasets)
+listviewer::jsonedit(datasets$data_package)
 DT::datatable(datasets)
 ```
 
@@ -96,4 +99,13 @@ records <- biosys_records(project_id = 6)
 DT::datatable(head(records, n = 100))
 ```
 
+# Example data
+The example data in this project were produced by saving one project's
+project metadata, dataset metadata, and a subset of records to the `data/` folder.
 
+```{r generate_example_data, eval=FALSE}
+projects <- biosys_projects()[6,]
+datasets <- biosys_datasets(project_id = 6)[1,]
+records <- biosys_records(project_id = 6) %>% head(n = 100)
+devtools::use_data(projects, datasets, records)
+```

@@ -1,9 +1,14 @@
 #' Parse BioSys projects to tibble
+#'
+#' @param un (character) The BioSys username, default \code{Sys.getenv("BIOSYS_UN")}
+#' @param pw (character) The BioSys password, default \code{Sys.getenv("BIOSYS_PW")}
+#' @return A tibble with project metadata. Fields \code{site_data_package}
+#'   and \code{custodians} are list columns.
 #' @export
 biosys_projects <- function(
     un=Sys.getenv("BIOSYS_UN"),
     pw=Sys.getenv("BIOSYS_PW")){
-
+    . <- ""
     biosys_get(
         "projects",
         un = un,
@@ -21,9 +26,9 @@ biosys_projects <- function(
                 latitude = purrr::map(., c("centroid", "coordinates")) %>%
                     map_dbl_hack(magrittr::extract2, 2),
                 datum = purrr::map_chr(., "datum"),
-                timezone = purrr::map_chr(., "timezone")
-                # site_data_package
-                # custodians
+                timezone = purrr::map_chr(., "timezone"),
+                site_data_package = purrr::map(., "site_data_package"),
+                custodians = purrr::map(., "custodians")
             )
         }
 }
