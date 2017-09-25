@@ -5,13 +5,13 @@
 #' @param project_id (int) An optional project ID to restrict the result to.
 #' @return A tibble of BioSys records with some common metadata fields plus the
 #'   respective data.
-#'   @importFrom utils data
 #' @export
 biosys_records <- function(
     un=Sys.getenv("BIOSYS_UN"),
     pw=Sys.getenv("BIOSYS_PW"),
     project_id = NULL){
     . <- ""
+    data <- "silence R CMD check warning"
     if (!is.null(project_id)) {
         query = list("dataset__project__id" = project_id)
     } else {
@@ -39,7 +39,7 @@ biosys_records <- function(
         )}
 
     metadatacols <- biosys_records %>%
-        dplyr::select("-data")
+        dplyr::select(-data)  # R CMD check can't handle unquoted variable names
 
     datacols <- biosys_records$data %>%
         kimisc::list_to_df(.) %>%
