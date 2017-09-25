@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Return JSON from a BioSys API endpoint — biosys_get • biosysR</title>
+<title>Parse BioSys projects to tibble — biosys_projects • biosysR</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,68 +83,21 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Return JSON from a BioSys API endpoint</h1>
+    <h1>Parse BioSys projects to tibble</h1>
     </div>
 
     
-    <p>Call the BioSys API serializer's list view with given GET
-  parameters and return the response JSON as list of lists.</p>
+    <p>Parse BioSys projects to tibble</p>
     
 
-    <pre class="usage"><span class='fu'>biosys_get</span>(<span class='no'>serializer</span>, <span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"https://biosys.dbca.wa.gov.au/api"</span>,
-  <span class='kw'>un</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"BIOSYS_UN"</span>), <span class='kw'>pw</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"BIOSYS_PW"</span>),
-  <span class='kw'>query</span> <span class='kw'>=</span> <span class='fu'>list</span>())</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>serializer</th>
-      <td><p>(character) WAStD API serializer name (required).
-Possible values as per
-<code>https://biosys.dbca.wa.gov.au/api</code> are:</p><ul>
-<li><p>projects</p></li>
-<li><p>datasets</p></li>
-<li><p>records</p></li>
-<li><p>sites</p></li>
-</ul></td>
-    </tr>
-    <tr>
-      <th>api</th>
-      <td><p>(character) The BioSys API URL,
-default https://biosys.dbca.wa.gov.au/api/</p></td>
-    </tr>
-    <tr>
-      <th>un</th>
-      <td><p>(character) The BioSys username, default <code>Sys.getenv("BIOSYS_UN")</code></p></td>
-    </tr>
-    <tr>
-      <th>pw</th>
-      <td><p>(character) The BioSys password, default <code>Sys.getenv("BIOSYS_PW")</code></p></td>
-    </tr>
-    <tr>
-      <th>query</th>
-      <td><p>(list) API query parameters for format, limit, filtering
-(default: list(taxon='Cheloniidae', limit=10000, format='json'))</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>An S3 object of class 'wastd_api_response' containing:</p>
-<p>content: The retrieved JSON as list of lists</p>
-<p>serializer: The called serializer, e.g. 'projects'</p>
-<p>response: The API HTTP response with all metadata</p>
-    
+    <pre class="usage"><span class='fu'>biosys_projects</span>(<span class='kw'>un</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"BIOSYS_UN"</span>), <span class='kw'>pw</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"BIOSYS_PW"</span>))</pre>
+        
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-          </ul>
+                </ul>
 
   </div>
 </div>

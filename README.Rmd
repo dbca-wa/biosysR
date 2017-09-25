@@ -14,18 +14,32 @@ knitr::opts_chunk$set(
 ```
 
 [![Travis-CI Build Status](https://travis-ci.org/parksandwildlife/biosysR.png?branch=master)](https://travis-ci.org/parksandwildlife/biosysR)
-[![Coverage Status](https://coveralls.io/repos/github/parksandwildlife/biosysR/badge.svg?branch=master)](https://coveralls.io/github/parksandwildlife/biosysR?branch=master)
+[![Coverage status](https://codecov.io/gh/parksandwildlife/biosysR/branch/master/graph/badge.svg)](https://codecov.io/github/parksandwildlife/biosysR?branch=master)
 
 # biosysR makes BioSys data accessible in R
-TODO section on BioSys.
+[BioSys](https://biosys.dbca.wa.gov.au/) is a data warehouse for biological 
+survey data run by the Western Australian Department of Biodiversity, 
+Conservation and Attractions (DBCA).
 
-If the data consumer however wishes to analyse data in a statistical package like
+BioSys is accessible to DBCA staff behind a single-sign-on firewall, 
+whereas the BioSys API is accessible both to staff (behind SSO firewall) 
+[through a GUI](https://biosys.dbca.wa.gov.au/sso/api) and 
+[from scripts](https://biosys.dbca.wa.gov.au/api) protected (read and write) 
+through basicauth using a BioSys username and password.
+The [BioSys API documentation](https://biosys-admin.dbca.wa.gov.au/api/explorer/)
+provides a graphical API browser.
+
+The BioSys API returns JSON dictionaries of projects, datasets, records, and other
+entities.
+
+If a data consumer wishes to analyse data in a statistical package like
 R, the data need to be transformed from a nested list of lists (JSON) into a
 two-dimensional tablular structure.
 
-The main purpose of `biosysR` is to facilitate reading, parsing and using 
-BioSys data by providing helpers to access the API and flatten the API outputs 
-into a [tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
+The main purpose of this R package, somewhat uncreatively named `biosysR`, 
+is to facilitate accessing and using BioSys data by providing helpers to access 
+the API and flatten the API outputs into a 
+[tidy](http://vita.had.co.nz/papers/tidy-data.html) `dplyr::tibble`.
 
 ## Installation
 
@@ -34,24 +48,47 @@ Install `biosystR` from GitHub:
 ```{r, eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("parksandwildlife/biosysR")
+library(biosysR)
 ```
 
 # Setup
-Obtain a Biosys username and password and add to your `~/.Rprofile`:
+The BioSys API is only accessible with basicauth using a valid Biosys username 
+and password. To get up and running, execute the following commands with your
+own BioSys username and password:
 
-```{r setenv, eval=FALSE}
-Sys.setenv(BIOSYS_API_USERNAME = "USERNAME")
-Sys.setenv(BIOSYS_API_PASSWORD = "PASSWORD")
+```{r setenv_session, eval=FALSE}
+Sys.setenv(BIOSYS_UN = "USERNAME")
+Sys.setenv(BIOSYS_PW = "PASSWORD")
+```
+See the package vignette for a comprehensive run-down on BioSys API authentication
+and setup options.
+
+## Usage example
+All examples assume that authentication credentials are available as environment
+variables. See the vignette for more authentication options.
+
+### BioSys projects
+```{r projects}
+projects <- biosysR::biosys_projects()
+knitr::kable(projects)
 ```
 
-Restart your R session to load the new environment variables.
-## Usage example 
+### BioSys datasets
+```{r datasets}
+datasets <- biosysR::biosys_datasets(project_id = 6)
+knitr::kable(datasets)
+```
 
-TODO
+### BioSys records
+```{r records}
+records <- biosysR::biosys_records(project_id = 6)
+knitr::kable(head(records, n = 100))
+```
 
 ## Learn more
 
-See the vignette for in-depth examples of transforming, analysing and visualising data.
+See the vignette for in-depth examples of authenticating, transforming, 
+analysing and visualising BioSys data. (Note: work in progress)
 
 ```{r, eval=FALSE}
 vignette("biosysR")
@@ -60,24 +97,24 @@ vignette("biosysR")
 # Contribute
 Every contribution, constructive feedback, or suggestion is welcome! 
 
-Send us your ideas and requests as [issues](https://github.com/parksandwildlife/biosysr/issues) 
+Send us your ideas and requests as 
+[issues](https://github.com/parksandwildlife/biosysr/issues) 
 or submit a pull request.
 
 Pull requests should eventually pass tests and checks (not introducing new 
 ERRORs, WARNINGs or NOTEs apart from the "New CRAN package" NOTE):
 
 ```{r, eval=FALSE}
-devtools::document(roclets=c('rd', 'collate', 'namespace', 'vignette'))
+devtools::document()
 devtools::test()
 pkgdown::build_site()
 devtools::check(check_version = T, force_suggests = T, cran = T)
-covr::codecov()
 ```
 
-To enable local testing of the API as well as checking and upload of test 
-coverage, add these two lines with the respective tokens to your .Rprofile:
+Code coverage is automatically calculated and reported from TravisCI.
+To manually submit code coverage reports, run:
 
 ```{r, eval=FALSE}
-Sys.setenv(CODECOV_TOKEN = "my-codecov-token")
-Sys.setenv(MY_API_TOKEN = "my-api-token")
+Sys.setenv(CODECOV_TOKEN=Sys.getenv("BIOSYS_CODECOV_TOKEN"))
+covr::codecov()
 ```

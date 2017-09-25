@@ -4,7 +4,7 @@
 #'   parameters and return the response JSON as list of lists.
 #' @param serializer (character) WAStD API serializer name (required).
 #'   Possible values as per
-#'   \code{https://biosys.dbca.wa.gov.au/api/} are:
+#'   \code{https://biosys.dbca.wa.gov.au/api} are:
 #'   \itemize{
 #'   \item projects
 #'   \item datasets
@@ -27,7 +27,7 @@
 #'   response: The API HTTP response with all metadata
 #' @export
 biosys_get <- function(serializer,
-                       api="https://biosys.dbca.wa.gov.au/api/",
+                       api="https://biosys.dbca.wa.gov.au/api",
                        un=Sys.getenv("BIOSYS_UN"),
                        pw=Sys.getenv("BIOSYS_PW"),
                        query = list()){
@@ -40,21 +40,31 @@ biosys_get <- function(serializer,
 
     if (res$status_code == 401) {
         stop(paste(
-            "Authorization failed.\n",
-            "Either supply BioSys username and password as arguments un and pw,\n",
+            "Authorization failed (HTTP 401).\n",
+            "Either supply BioSys username and password as arguments 'un' and 'pw',\n",
             "or set your BioSys username and password as system variables with",
-            "Sys.setenv(BIOSYS_UN=\"usr\") and Sys.setenv(BIOSYS_PW=\"passwd\")."),
+            "Sys.setenv(BIOSYS_UN=\"usr\") and Sys.setenv(BIOSYS_PW=\"passwd\").\n",
+            "See the README for detailed instructions to authenticate."),
             call. = FALSE)
     }
 
-    if (res$status_code > 401) {
-        stop("Error - this request had some problem.",
+    if (res$status_code == 404) {
+        stop(paste("Invalid URL (HTTP 404)", url),
+            call. = FALSE)
+    }
+
+    if (res$status_code > 405) {
+        stop(paste("Aborting request with error", res$status_code, "\n",
+                   "URL: ", url,
+                   "GET parameters: ", utils::str(query)),
              call. = FALSE)
     }
 
 
     if (httr::http_type(res) != "application/json") {
-        stop(paste("API did not return JSON.\nIs", url, "a valid endpoint?"),
+        stop(paste("API did not return JSON.\n",
+                   "URL: ", url,
+                   "GET parameters: ", str(query)),
              call. = FALSE)
     }
 

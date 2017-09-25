@@ -4,14 +4,14 @@
 \alias{biosys_get}
 \title{Return JSON from a BioSys API endpoint}
 \usage{
-biosys_get(serializer, api = "https://biosys.dbca.wa.gov.au/api/",
+biosys_get(serializer, api = "https://biosys.dbca.wa.gov.au/api",
   un = Sys.getenv("BIOSYS_UN"), pw = Sys.getenv("BIOSYS_PW"),
   query = list())
 }
 \arguments{
 \item{serializer}{(character) WAStD API serializer name (required).
 Possible values as per
-\code{https://biosys.dbca.wa.gov.au/api/} are:
+\code{https://biosys.dbca.wa.gov.au/api} are:
 \itemize{
 \item projects
 \item datasets

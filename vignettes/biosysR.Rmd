@@ -11,18 +11,53 @@ vignette: >
 
 ```{r libs, message=FALSE}
 library(biosysR)
-library(magrittr)
 ```
 
 # Setup
-Obtain a Biosys username and password and add to your `~/.Rprofile`:
+The BioSys API is only accessible with basicauth using a valid Biosys username 
+and password.
+
+All `biosysR` functions calling the BioSys API expect optional parameters `un` 
+and `pw`, which default to environment variables `BIOSYS_UN` and `BIOSYS_UN`,
+respectively. Calling `biosysR` functions with invalid or empty, credentials, or
+defaulting to non existing `BIOSYS_UN` and `BIOSYS_PW` will fail with an 
+informative error message prompting for correct authentication.
+
+There are three ways to supply these authentication credentials to `biosysR` functions.
+
+## Permanent authentication
+To set-and-forget BioSys authentication, add to your `~/.Rprofile`:
 
 ```{r setenv, eval=FALSE}
-Sys.setenv(BIOSYS_API_USERNAME = "USERNAME")
-Sys.setenv(BIOSYS_API_PASSWORD = "PASSWORD")
+Sys.setenv(BIOSYS_UN = "USERNAME")
+Sys.setenv(BIOSYS_PW = "PASSWORD")
 ```
 
-Restart your R session to load the new environment variables.
+Every new R session will already contain these variables.
+
+## Session authentication
+To authenticate one session, export `BIOSYS_UN/PW` as environment variables:
+
+```{r setenv_session, eval=FALSE}
+Sys.setenv(BIOSYS_UN = "USERNAME")
+Sys.setenv(BIOSYS_PW = "PASSWORD")
+```
+
+Restarting the R session will clear these variables.
+
+## Per request authentication
+Supply the variables to each `biosysR` function:
+
+* `biosys_projects`
+* `biosys_datasets`
+* `biosys_records`
+
+```{r setenv_request, eval=FALSE}
+projects <- biosys_projects(un="USERNAME", pw="PASSWORD")
+```
+
+Doing so will hand `un` and `pw` to `biosys_get`, which builds the authentication
+headers and uses them in the request to BioSys.
 
 # Data flow
 
@@ -42,110 +77,6 @@ using single sign on (needs active browser window)
 * Data is retrieved from the BioSys API through an HTTP GET with basicauth.
 * The JSON returned from the BioSys API is parsed into a `tibble`.
 * All heavy lifting is factored out into helper functions.
-
-```{r helpers}
-#' Parse BioSys projects to tibble
-biosys_projects <- function(
-    un=Sys.getenv("BIOSYS_UN"), 
-    pw=Sys.getenv("BIOSYS_PW")){
-    
-    biosys_get(
-        "projects", 
-        un = un, 
-        pw = pw)$content %>% {
-            tibble::tibble(
-                id = purrr::map_chr(., "id"),
-                name = purrr::map_chr(., "name"),
-                code = purrr::map_chr(., "code"),
-                description = map_chr_hack(., "description"),
-                site_count = purrr::map_int(., "site_count"),
-                dataset_count = purrr::map_int(., "dataset_count"),
-                record_count = purrr::map_int(., "record_count"),
-                longitude = purrr::map(., c("centroid", "coordinates")) %>% 
-                    map_dbl_hack(magrittr::extract2, 1),
-                latitude = purrr::map(., c("centroid", "coordinates")) %>% 
-                    map_dbl_hack(magrittr::extract2, 2),
-                datum = purrr::map_chr(., "datum"),
-                timezone = purrr::map_chr(., "timezone")
-                # site_data_package
-                # custodians
-            )
-        }
-}
-
-
-#' Parse BioSys datasets to tibble
-biosys_datasets <- function(
-    un=Sys.getenv("BIOSYS_UN"), 
-    pw=Sys.getenv("BIOSYS_PW"),
-    project_id = NULL){
-    
-    if (!is.null(project_id)) {
-        query = list("project" = project_id)
-    } else {
-        query = list()
-    }
-    
-    biosys_get(
-        "datasets", 
-        un = un, 
-        pw = pw, 
-        query = query)$content %>% {   
-            tibble::tibble(
-                id = purrr::map_chr(., "id"),
-                record_count = purrr::map_int(., "record_count"),
-                data_package = purrr::map(., "data_package"),
-                name = purrr::map_chr(., "name"),
-                type = purrr::map_chr(., "type"),
-                description = map_chr_hack(., "description"),
-                project_id = purrr::map_int(., "project")
-            )
-        }
-}
-
-
-#' Parse BioSys records to tibble
-biosys_records <- function(
-    un=Sys.getenv("BIOSYS_UN"),
-    pw=Sys.getenv("BIOSYS_PW"),
-    project_id = NULL){
-    
-  if (!is.null(project_id)) {
-    query = list("dataset__project__id" = project_id)
-  } else {
-      query = list()
-  }
-  biosys_json <- biosys_get(
-      "records", un = un, pw = pw, query = query)$content
-  
-  biosys_records <- biosys_json %>% {
-   tibble::tibble(
-     id = purrr::map_chr(., "id"),
-     datetime = map_chr_hack(., "datetime"),
-     species_name = map_chr_hack(., "species_name"),
-     name_id = map_chr_hack(., "name_id"),
-     file_name = purrr::map(., "source_info") %>% 
-        map_chr_hack(magrittr::extract2, 1),
-     file_row = purrr::map(., "source_info") %>% 
-       map_chr_hack(magrittr::extract2, 2),
-     last_modified = purrr::map_chr(., "last_modified"),
-     dataset = purrr::map_chr(., "dataset"),
-     site = map_chr_hack(., "site"),
-     data = purrr::map(., "data")
-   )}
-  
-  metadatacols <- biosys_records %>% 
-      dplyr::select(-data)
-  
-  datacols <- biosys_records$data %>% 
-    kimisc::list_to_df(.) %>% 
-    magrittr::extract2("value") %>% 
-    purrr::transpose(.) %>% 
-    tibble::as_tibble(.)
-  
-  cbind(metadatacols, datacols)
-}
-```
 
 ## BioSys projects
 ```{r projects}
