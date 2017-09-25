@@ -1,9 +1,23 @@
 testthat::context("map_chr_hack")
 
-testthat::test_that("map_chr_hack works", {
-    testthat::expect_equal(1, 1)
-    # data("animal_encounters")
-    # nn <- map_chr_hack(animal_encounters$content, c("properties", "name"))
-    # testthat::expect_true(is.na(nn[[1]])) # this depends on animal_encounters first name being NULL
-    # testthat::expect_equal(nn[[2]], animal_encounters$content[[2]]$properties$name)
+testthat::test_that("map_chr_hack returns text when text found", {
+    data("projects_api")
+    testthat::expect_equal(
+        map_chr_hack(projects_api, "description"),
+        paste0("Benthic community composition determined by point count of drop",
+               " camera images using the software EcoPAAS.\n\nArea: Shark Bay\n",
+               "Main habitat: Seagrass\nDate surveyed: March 2016"))
+
+    testthat::expect_true(is.na(map_chr_hack(projects_api, "site_data_package")))
+})
+
+testthat::test_that("map_chr_hack returns NA when NA found", {
+    data("projects_api")
+    testthat::expect_equal(
+        map_chr_hack(projects_api, "description"),
+        paste0("Benthic community composition determined by point count of drop",
+               " camera images using the software EcoPAAS.\n\nArea: Shark Bay\n",
+               "Main habitat: Seagrass\nDate surveyed: March 2016"))
+
+    testthat::expect_true(is.na(map_chr_hack(projects_api, "site_data_package")))
 })

@@ -13,3 +13,8 @@ NULL
 #' @format a \code{tibble} with 100 records of 8 shared and 46 dataset-specific
 #'   variables.
 NULL
+
+#' @name projects_api
+#' @title Example BioSys JSON response for one project
+#' @format a \code{list} with 14 keys.
+NULL

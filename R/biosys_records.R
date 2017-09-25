@@ -47,5 +47,5 @@ biosys_records <- function(
         purrr::transpose(.) %>%
         tibble::as_tibble(.)
 
-    cbind(metadatacols, datacols)
+    cbind(metadatacols, datacols) %>% tibble::as_tibble(.)
 }

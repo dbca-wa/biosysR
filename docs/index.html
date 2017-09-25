@@ -120,15 +120,15 @@ dplyr::<span class="kw">glimpse</span>(projects)
 <a href="#biosys-datasets" class="anchor"></a>BioSys datasets</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datasets &lt;-<span class="st"> </span>biosysR::<span class="kw"><a href="reference/biosys_datasets.html">biosys_datasets</a></span>(<span class="dt">project_id =</span> <span class="dv">6</span>)
 dplyr::<span class="kw">glimpse</span>(datasets)
-<span class="co">#&gt; Observations: 2</span>
+<span class="co">#&gt; Observations: 48</span>
 <span class="co">#&gt; Variables: 7</span>
-<span class="co">#&gt; $ id           &lt;chr&gt; "126", "127"</span>
-<span class="co">#&gt; $ record_count &lt;int&gt; 1848, 1848</span>
-<span class="co">#&gt; $ data_package &lt;list&gt; [["tabular-data-package", "BioSys Config", "sby_...</span>
-<span class="co">#&gt; $ name         &lt;chr&gt; "Seagrass", "test"</span>
-<span class="co">#&gt; $ type         &lt;chr&gt; "observation", "generic"</span>
-<span class="co">#&gt; $ description  &lt;chr&gt; "An example excerpt of benthic community composit...</span>
-<span class="co">#&gt; $ project_id   &lt;int&gt; 6, 6</span></code></pre></div>
+<span class="co">#&gt; $ id           &lt;chr&gt; "101", "107", "118", "30", "45", "99", "108", "11...</span>
+<span class="co">#&gt; $ record_count &lt;int&gt; 4582, 38, 3307, 33, 414, 426, 95, 42, 23, 1163, 6...</span>
+<span class="co">#&gt; $ data_package &lt;list&gt; [["tabular-data-package", "BioSys Config", "anim...</span>
+<span class="co">#&gt; $ name         &lt;chr&gt; "Animal Observations", "Animal Observations", "An...</span>
+<span class="co">#&gt; $ type         &lt;chr&gt; "species_observation", "species_observation", "sp...</span>
+<span class="co">#&gt; $ description  &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "...</span>
+<span class="co">#&gt; $ project_id   &lt;int&gt; 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 3, 3, 4, 5, 2...</span></code></pre></div>
 </div>
 <div id="biosys-records" class="section level3">
 <h3 class="hasAnchor">
@@ -220,15 +220,15 @@ dplyr::<span class="kw">glimpse</span>(projects)
 <span class="co">#&gt; $ site_data_package &lt;list&gt; [NULL, NULL, NULL, NULL, NULL, NULL, NULL]</span>
 <span class="co">#&gt; $ custodians        &lt;list&gt; [2, 2, 2, 2, 2, [2, 9, 12], 2]</span>
 dplyr::<span class="kw">glimpse</span>(datasets)
-<span class="co">#&gt; Observations: 2</span>
+<span class="co">#&gt; Observations: 48</span>
 <span class="co">#&gt; Variables: 7</span>
-<span class="co">#&gt; $ id           &lt;chr&gt; "126", "127"</span>
-<span class="co">#&gt; $ record_count &lt;int&gt; 1848, 1848</span>
-<span class="co">#&gt; $ data_package &lt;list&gt; [["tabular-data-package", "BioSys Config", "sby_...</span>
-<span class="co">#&gt; $ name         &lt;chr&gt; "Seagrass", "test"</span>
-<span class="co">#&gt; $ type         &lt;chr&gt; "observation", "generic"</span>
-<span class="co">#&gt; $ description  &lt;chr&gt; "An example excerpt of benthic community composit...</span>
-<span class="co">#&gt; $ project_id   &lt;int&gt; 6, 6</span>
+<span class="co">#&gt; $ id           &lt;chr&gt; "101", "107", "118", "30", "45", "99", "108", "11...</span>
+<span class="co">#&gt; $ record_count &lt;int&gt; 4582, 38, 3307, 33, 414, 426, 95, 42, 23, 1163, 6...</span>
+<span class="co">#&gt; $ data_package &lt;list&gt; [["tabular-data-package", "BioSys Config", "anim...</span>
+<span class="co">#&gt; $ name         &lt;chr&gt; "Animal Observations", "Animal Observations", "An...</span>
+<span class="co">#&gt; $ type         &lt;chr&gt; "species_observation", "species_observation", "sp...</span>
+<span class="co">#&gt; $ description  &lt;chr&gt; "", "", "", "", "", "", "", "", "", "", "", "", "...</span>
+<span class="co">#&gt; $ project_id   &lt;int&gt; 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 3, 3, 4, 5, 2...</span>
 dplyr::<span class="kw">glimpse</span>(<span class="kw">head</span>(records))
 <span class="co">#&gt; Observations: 6</span>
 <span class="co">#&gt; Variables: 54</span>

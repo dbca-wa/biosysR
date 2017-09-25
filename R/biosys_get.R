@@ -90,11 +90,11 @@ biosys_get <- function(serializer,
 #' @param x An object of class `biosys_api_response` as returned by
 #'   \code{\link{biosys_get}}.
 #' @param ... Extra parameters for `print`
-#' @importFrom utils str
+#' @importFrom dplyr glimpse
 #' @export
 print.biosys_api_response <- function(x, ...) {
-    cat("<BioSys API endpoint", x$serializer, ">\n",
-        "Retrieved on ", x$response$headers$date, ">\n", sep = "")
-    utils::str(x$content)
+    cat("<BioSys API endpoint \"", x$serializer, "\">\n",
+        length(x$content), " objects retrieved on ", x$response$headers$date,
+        sep = "")
     invisible(x)
 }

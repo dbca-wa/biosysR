@@ -2,7 +2,9 @@ context("biosys_get")
 
 testthat::test_that("biosys_get won't work unauthenticated", {
 
-    testthat::expect_error(biosys_get("projects", un="invalid", pw="invalid"))
+    testthat::expect_error(
+        biosys_get("projects", un = "invalid", pw = "invalid")
+        )
 })
 
 biosys_api_online <- function(){
@@ -13,7 +15,7 @@ biosys_api_online <- function(){
 }
 
 testthat::test_that("biosys_get returns something", {
-    res <- biosys_get("", api="http://echo.jsontest.com/", query = list())
+    res <- biosys_get("", api = "http://echo.jsontest.com/", query = list())
     testthat::expect_equal(res$response$status_code, 200)
     testthat::expect_s3_class(res, "biosys_api_response")
 })
@@ -40,7 +42,8 @@ testthat::test_that("get_biosys works with correct credentials", {
     if (!biosys_api_online()) skip(
         "BioSys API is not accessible from here, skipping...")
 
-    res <- biosys_get("projects", un=un, pw=pw)
+    res <- biosys_get("projects", un = un, pw = pw)
+    print(res)
 
     testthat::expect_equal(res$response$status_code, 200)
 })
